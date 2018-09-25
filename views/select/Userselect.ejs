@@ -1,0 +1,57 @@
+<%include header-slider.ejs%>
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">表格</strong> / <small>Table</small></div>
+      </div>
+
+      <hr>
+
+      <div class="am-g">
+        <div class="am-u-sm-12">
+          <form class="am-form">
+            <table class="am-table am-table-striped am-table-hover table-main">
+              <thead>
+              <tr>
+              <th class="table-id">Uid</th><th class="table-title">name</th><th class="table-type">phone</th><th class="table-author am-hide-sm-only">password</th><th class="table-date am-hide-sm-only">email</th><th class="table-set">操作</th>
+              </tr>
+              </thead>
+              <tbody id = "tbody">
+              
+             <% data.forEach((item)=>{ %>
+              <tr>  
+                <td><%=item.Pid%></td>
+                <td><a href="#"><%=item.name%></a></td>
+                <td><%=item.phone%></td>
+                <td class="am-hide-sm-only"><%=item.user_password%></td>
+                <td class="am-hide-sm-only"><%=item.email%></td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <a href="/useredit?id=<%=item.Pid%>" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</a>
+                      <a href="/userdelet?id=<%=item.Pid%>" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
+                    </div>
+                  </div>
+                </td>
+                </form>
+              </tr>
+             <%})%>
+
+
+              </tbody>
+            </table>
+            <div class="am-cf">
+              共 <%=data.length%> 条记录    
+            </div>
+            <hr />
+            <p>注：.....</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  
+<%include footer.ejs%>

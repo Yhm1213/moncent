@@ -1,0 +1,154 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>后台管理</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/admin.css">
+  <style type="text/css">  
+         #bg{ display: none;  position: fixed;  top: 0%;  left: 0%;  width: 100%;  height: 100%;  background-color: black;  z-index:1001;  -moz-opacity: 0.7;  opacity:.70;  filter: alpha(opacity=70);}  
+         #show{display: none;  position: absolute;  top: 25%;  left: 34%;  width: 30%; padding: 8px;  border: 8px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;}  
+         #show-adv{display: none;  position: absolute;  top: 25%;  left: 34%;  width: 30%; padding: 8px;  border: 8px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;}  
+         #show-movie-admin{display: none;  position: absolute;  top: 25%;  left: 34%;  width: 30%; padding: 8px;  border: 8px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;}  
+         #show-movie{display: none;  position: absolute;  top: 15%;  left: 34%;  width: 30%; padding: 8px;  border: 8px solid #E8E9F7;  background-color: white;  z-index:1002;  overflow: auto;}  
+
+     </style>  
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+
+
+
+<div id="bg"></div>  
+    <div id="show">
+         <input id="btnclose" type="button" value="关闭" style="margin-bottom: 20px;" onclick="hidediv();" />  
+         <br />
+        <label style="margin-left: 5px;">user_name：&nbsp;&nbsp;</label><input id="user_name" type="text" style="height: 30px;width:80%;margin-bottom: 5px;" placeholder="请输入user_name"/>
+        <label style="margin-left: 5px;">user_age：&nbsp;&nbsp;</label><input id="user_age" type="text" style="height: 30px;width:80%;margin-bottom: 5px;" placeholder="请输入姓名user_age"/>
+        <label style="margin-left: 5px;">user_password：&nbsp;&nbsp;</label><input id="user_password" type="text" style="height: 30px;width:80%;margin-bottom: 5px;" placeholder="请输入user_password"/>
+        <label style="margin-left: 5px;">user_email：&nbsp;&nbsp;</label><input id="user_email" type="text" style="height: 30px;width:80%;margin-bottom: 5px;" placeholder="请输入姓名user_email"/>
+        <br />
+        <br />
+        <button  onclick = "sendinsert()"  style="margin-left: 45%;">确定</button>
+     </div>  
+
+     <div id="show-movie-admin">
+         <input id="btnclose" type="button" value="关闭" style="margin-bottom: 20px;" onclick="hidedivMovieAdmin();" />  
+         <br />
+        <label style="margin-left: 5px;width:20%;">name：</label><input id="name" type="text" style="height: 30px;width:70%;margin-bottom: 5px;" placeholder="请输入name"/>
+        <label style="margin-left: 5px;width:20%;">cost：</label><input id="ticket_cost" type="text" style="height: 30px;width:70%;margin-bottom: 5px;" placeholder="请输入cost"/>
+        <label style="margin-left: 5px;width:20%;">off：</label><input id="off" type="text" style="height: 30px;width:70%;margin-bottom: 5px;" placeholder="请输入off"/>
+        <label style="margin-left: 5px;width:20%;">title：</label><input id="title" type="text" style="height: 30px;width:70%;margin-bottom: 5px;" placeholder="请输入title"/>
+        <label style="margin-left: 5px;width:20%;">route：</label><input id="route" type="text" style="height: 30px;width:70%;margin-bottom: 5px;" placeholder="请输入route"/>
+        <label style="margin-left: 5px;width:20%;">plan：</label><textarea id="plan" type="text" rows="4" style="width:70%;margin-bottom: 5px;" placeholder="请输入plan"></textarea>
+        <label style="margin-left: 5px;width:20%;">context：&nbsp;&nbsp;</label><textarea id="context" type="text" rows="4" style="width:70%;margin-bottom: 5px;" placeholder="请输入context"></textarea>
+        <br />
+        <br />
+        <button  onclick = "sendinsertMovieAdmin()"  style="margin-left: 45%;">确定</button>
+     </div>  
+
+     <div id="show-movie">
+         <input id="btnclose" type="button" value="关闭" style="margin-bottom: 20px;" onclick="hidedivMovie();" />  
+         <br />
+         <form method='post', action='/Movieinsert', enctype='multipart/form-data' >
+        <label style="margin-left: 5px;">movie_name：&nbsp;&nbsp;</label><input id="movie_name" name= "movie_name" type="text" style="height: 30px;width:80%;margin-bottom: 5px;" placeholder="请输入movie_name"/>
+        <label style="margin-left: 5px;">movie_len：&nbsp;&nbsp;</label><input id="movie_len" name="movie_len" type="text" style="height: 30px;width:80%;margin-bottom: 5px;" placeholder="请输入movie_len"/>
+        <label style="margin-left: 5px;">movie_type：&nbsp;&nbsp;</label><input id="movie_type" name= "movie_type" type="text" style="height: 30px;width:80%;margin-bottom: 5px;" placeholder="请输入movie_type"/>
+        <label style="margin-left: 5px;">movie_des：&nbsp;&nbsp;</label><input id="movie_des" name = "movie_des"type="text" style="height: 30px;width:80%;margin-bottom: 5px;" placeholder="请输入姓名movie_des"/>
+        <br />
+        <br />
+        <label style="margin-left: 5px;">先选电影再选图片：&nbsp;&nbsp;</label>
+        <input name='inputFile', type='file', multiple='mutiple'/>
+        <button  type='submit' style="margin-left: 45%;">确定</button>
+
+    </form>
+     </div>  
+
+
+
+      <div id="show-adv">
+         <input id="btnclose" type="button" value="关闭" style="margin-bottom: 20px;" onclick="hidedivAdv();" />  
+         <br />
+         <form method='post', action='/Advinsert', enctype='multipart/form-data' >
+        <label style="margin-left: 5px;">adv_name：&nbsp;&nbsp;</label><input id="adv_name" name= "adv_name" type="text" style="height: 30px;width:80%;margin-bottom: 5px;" placeholder="请输入adv_name"/>
+        <br />
+        <br />
+        <label style="margin-left: 5px;">选择广告：&nbsp;&nbsp;</label>
+        <input name='inputFile', type='file', multiple='mutiple'/>
+        <button  type='submit' style="margin-left: 45%;">确定</button>
+
+    </form>
+     </div>  
+
+
+
+<header class="am-topbar am-topbar-inverse admin-header">
+  <div class="am-topbar-brand">
+    <strong>大山旅游</strong> <small>后台管理</small>
+  </div>
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+      <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
+          <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
+          <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
+        </ul>
+      </li>
+      <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+      <ul class="am-list admin-sidebar-list">
+        <li><a href="admin-index"><span class="am-icon-home"></span> 首页</a></li>
+        <li><a href="admin-tableUsers"><span class="am-icon-table"></span> 用户</a></li>
+        <li><a href="admin-tableAdv"><span class="am-icon-table"></span> 攻略</a></li>
+        <li><a href="admin-tableMovie"><span class="am-icon-table"></span> 游记</a></li>
+        <li><a href="admin-tableMovieAdmin"><span class="am-icon-table"></span> 旅游路线</a></li>
+        <!-- <li><a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a></li>  -->
+        <li><a href="admin-out" ><span class="am-icon-sign-out"></span> 注销</a></li>
+      </ul>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-bookmark"></span> 公告</p>
+          <p>时光静好，与君语；细水流年，与君同。—— 大山影视</p>
+        </div>
+      </div>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-tag"></span>Administration</p>
+          <p>Welcome to the Dashan film Administration!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- sidebar end -->
+

@@ -1,0 +1,27 @@
+<html>
+<body>
+
+<h1>My First Heading</h1>
+<button onclick="sendPost('/usersApi/send_oath',{email:'4482664919@qq.com'})">send info to login </button>
+<button onclick="sendPost('/usersApi/purche',{ticket$Tid:'dba7a050-9da5-11e7-a274-c92691d5efc2',cost:123,access_token:'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIzMGRhYjg5MC05Y2RmLTExZTctOGEyMS0yYmY1YWFlY2FkYzEiLCJleHAiOjE1MDYzOTE2OTA0MjV9.m2sfnJ_DNwXffxnzZ7PN8HcWFRgBw2TWgMMTztzjBb8'})">send info to get user infomation </button>
+
+
+<script type="text/javascript">
+function sendPost(url,data) {
+    fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+        'Content-Type': 'application/json'
+    }, 
+    body: JSON.stringify(data)
+}).then(function(response) {
+  return response.json();
+}).then(function (datas){
+    console.log(datas)
+}).catch(function(err) {
+  console.log(err);
+});
+  }
+</script>
+</html>

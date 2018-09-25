@@ -1,0 +1,9 @@
+{
+	"jwtSecret":"moncent3dai2",
+	"database":{  
+  "host"     : "115.29.106.55",  
+  "user"     : "moncent",  
+  "password" : "12345678",  
+  "database" : "moncent"  
+}
+}
